@@ -27,10 +27,10 @@ def extract_video(data: VideoRequest):
 
         for f in info.get("formats", []):
             if f.get("ext") == "mp4" and f.get("url"):
-                formats.append({
-                    "quality": f.get("format_note", "unknown"),
-                    "url": f.get("url")
-                })
+       formats.append({
+    "quality": f.get("format_note", "unknown"),
+    "url": f.get("url")
+})
 
         return {
             "title": info.get("title"),
