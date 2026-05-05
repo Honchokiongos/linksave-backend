@@ -33,11 +33,20 @@ def extract_video(data: VideoRequest):
     "size": str(f.get("filesize") or f.get("filesize_approx") or "Unknown")
    })
 
-        return {
-            "title": info.get("title"),
-            "thumbnail": info.get("thumbnail"),
-            "formats": formats[:5]
-        }
+        duration_seconds = info.get("duration")
+duration_text = "Unknown"
+
+if duration_seconds:
+    minutes = duration_seconds // 60
+    seconds = duration_seconds % 60
+    duration_text = f"{minutes:02d}:{seconds:02d}"
+
+return {
+    "title": info.get("title"),
+    "thumbnail": info.get("thumbnail"),
+    "duration": duration_text,
+    "formats": formats[:5]
+}
 
     except Exception as e:
         return {"error": str(e)}
