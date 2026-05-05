@@ -29,8 +29,9 @@ def extract_video(data: VideoRequest):
             if f.get("ext") == "mp4" and f.get("url"):
        formats.append({
     "quality": f.get("format_note", "unknown"),
-    "url": f.get("url")
-})
+    "url": f.get("url"),
+    "size": str(f.get("filesize") or f.get("filesize_approx") or "Unknown")
+   })
 
         return {
             "title": info.get("title"),
